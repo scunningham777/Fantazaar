@@ -1,5 +1,7 @@
 import {Page} from 'ionic-angular';
-import {ValuesPipe} from '../../utils/values.pipe'
+import {NavController} from 'ionic-angular';
+import {ValuesPipe} from '../../utils/values.pipe';
+import {ItemDetailsComponent} from '../itemDetails/itemDetails.component';
 
 
 @Page({
@@ -12,7 +14,7 @@ import {ValuesPipe} from '../../utils/values.pipe'
     <ion-content class="layout-primary">
         <div class="layout-restrainWidth800">
             <div *ngFor="#item of items | values; #index=index" class="itemTile itemTile-bg{{index%7}}">
-                <div class="itemTile_content" (click)="showItemDetails(item.name)">{{item.name}}</div>
+                <div class="itemTile_content" (click)="showItemDetails(item)">{{item.name}}</div>
                 <div class="itemTile_buttonRow">
                     <div class="itemTile_button" (click)="incrementItemOwnedCount(item)">
                         <span class="itemTile_countText">{{inventory[item.name] ? (inventory[item.name].numberOwned || 0) : 0}}</span>
@@ -28,12 +30,19 @@ import {ValuesPipe} from '../../utils/values.pipe'
      </ion-content>
   `
 })
-export class Page1 {
-    items = Page1.getItems();
-    inventory = {};
+export class ItemListComponent {
+  nav:NavController;
+  items;
+  inventory;
+  
+  constructor(nav: NavController) {
+    this.nav = nav;
+    this.items = ItemListComponent.getItems();
+    this.inventory = {};    
+  }
     
-    showItemDetails(itemName: string) {
-        ;
+    showItemDetails(item) {
+        this.nav.push(ItemDetailsComponent, {'selectedItem': item});
     }
     
     incrementItemOwnedCount(item) {
