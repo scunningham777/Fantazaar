@@ -1,4 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
+import {ItemsService} from '../../items/items.service'
 
 @Page({
     template: `
@@ -33,27 +34,29 @@ import {Page, NavController, NavParams} from 'ionic-angular';
 export class ItemDetailsComponent {
   nav:NavController;
   params: NavParams;
+  itemsService: ItemsService;
   item;
   hasStringSources;
   hasBazaarSources;
   stringSources;
   bazaarSources;
   
-  constructor(nav:NavController, params: NavParams) {
+  constructor(nav:NavController, params: NavParams, itemsService: ItemsService) {
     this.nav = nav;
     this.params = params;
+    this.itemsService = itemsService;
   }
   
   onPageWillEnter(){
-		this.item = this.params.data.selectedItem;
+		this.item = this.itemsService.getItemByName(this.params.data.selectedItem);
     this.hasStringSources = ItemDetailsComponent._hasStringSources(this.item);
     this.hasBazaarSources = ItemDetailsComponent._hasBazaarSources(this.item);
     this.stringSources = this.hasStringSources?this.item.sources.filter(ItemDetailsComponent._isString):[];
     this.bazaarSources = this.hasBazaarSources?this.item.sources.filter(Array.isArray)[0]:[];
 	}
   
-  showItemDetails(item) {
-    this.nav.push(ItemDetailsComponent, {'selectedItem': {name: item}});
+  showItemDetails(itemName) {
+    this.nav.push(ItemDetailsComponent, {'selectedItem': itemName});
   }
   
   static _hasBazaarSources(item) {

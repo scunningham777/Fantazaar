@@ -21,6 +21,10 @@
 // are different per mode.
 
 $colors: (
+  fz-primary-dark:      #384450,
+  fz-primary-light:     #7BB2C2,
+  fz-coral:             #F2695C,
+  fz-yellow:            #F0CA4D,
   primary:    #387ef5,
   secondary:  #32db64,
   danger:     #f53d3d,
@@ -28,3 +32,20 @@ $colors: (
   dark:       #222,
   favorite:   #69BB7B
 );
+
+$toolbar-background: map-get($map: $colors, $key: fz-primary-dark);
+$toolbar-border-color: map-get($map: $colors, $key: fz-primary-dark);
+$toolbar-text-color: map-get($map: $colors, $key: fz-primary-light);
+
+$tabbar-ios-background: map-get($map: $colors, $key: fz-primary-light);
+$tabbar-md-background: map-get($map: $colors, $key: fz-primary-light);
+$tabbar-wp-background: map-get($map: $colors, $key: fz-primary-light);
+
+$tab-button-ios-inactive-color: map-get($map: $colors, $key: fz-primary-dark);
+$tab-button-md-inactive-color: map-get($map: $colors, $key: fz-primary-dark);
+$tab-button-wp-inactive-color: map-get($map: $colors, $key: fz-primary-dark);
+
+$tab-button-ios-active-color: map-get($map: $colors, $key: fz-yellow);
+$tab-button-md-active-color: map-get($map: $colors, $key: fz-yellow);
+$tab-button-wp-active-color: map-get($map: $colors, $key: fz-yellow);
+
