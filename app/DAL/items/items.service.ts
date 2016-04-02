@@ -1,14 +1,27 @@
+import {Injectable} from 'angular2/core';
+import {Item} from './item';
+import {EntityManager} from '../EntityManager';
+
+@Injectable()
 export class ItemsService {
-  constructor() {
+  private entityManager: EntityManager;
+  constructor(entityManager: EntityManager) {
+    this.entityManager = entityManager;
   }
   
-  getItemByName(itemName: string) {
-    return this._getItems()[itemName];
+  getItemByName(itemName: string): Item {
+    var createdItem = this._getItems()[itemName]; 
+    return new Item(createdItem.name, createdItem.sources);
   }
   
   getAllItems() {
     return this._getItems();
   }
+  
+  isValidItem(itemName: string) {
+    return (itemName && this._getItems().hasOwnProperty(itemName));
+  }
+
   
   _getItems() {
     return {

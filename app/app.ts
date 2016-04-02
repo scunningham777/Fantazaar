@@ -1,13 +1,17 @@
 import {App, Platform} from 'ionic-angular';
 import {TabsPage} from './pages/tabs/tabs';
-import {ItemsService} from './items/items.service';
+import {ItemsService} from './DAL/items/items.service';
+import {InventoryService} from './DAL/inventory/inventory.service';
+import {EntityManager} from './DAL/EntityManager';
 
 // https://angular.io/docs/ts/latest/api/core/Type-interface.html
 import {Type} from 'angular2/core';
 
 
 const dataAccessProviders = [
-  ItemsService
+  ItemsService,
+  InventoryService,
+  EntityManager
 ];
 const utilProviders = [
   

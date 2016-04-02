@@ -1,5 +1,5 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {ItemsService} from '../../items/items.service'
+import {ItemsService} from '../../DAL/items/items.service'
 
 @Page({
     template: `

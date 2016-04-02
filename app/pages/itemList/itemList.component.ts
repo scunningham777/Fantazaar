@@ -2,8 +2,8 @@ import {Page} from 'ionic-angular';
 import {NavController} from 'ionic-angular';
 import {ValuesPipe} from '../../utils/values.pipe';
 import {ItemDetailsComponent} from '../itemDetails/itemDetails.component';
-import {ItemsService} from '../../items/items.service';
-
+import {ItemsService} from '../../DAL/items/items.service';
+import {InventoryService} from '../../DAL/inventory/inventory.service';
 
 @Page({
   pipes: [ValuesPipe],
@@ -34,17 +34,22 @@ import {ItemsService} from '../../items/items.service';
 export class ItemListComponent {
   nav: NavController;
   itemsService: ItemsService;
+  inventoryService: InventoryService;
   items;
-  inventory;
+  inventory = {};
 
-  constructor(nav: NavController, itemsService: ItemsService) {
+  constructor(nav: NavController, itemsService: ItemsService, inventoryService: InventoryService) {
     this.nav = nav;
     this.itemsService = itemsService;
-    this.inventory = {};
+    this.inventoryService = inventoryService;
   }
 
   onPageWillEnter() {
     this.items = this.itemsService.getAllItems();
+    this.inventoryService.getInventory()
+      .then(inventory => {
+        this.inventory = inventory
+      });
   }
 
   showItemDetails(item) {
@@ -52,65 +57,19 @@ export class ItemListComponent {
   }
 
   incrementItemOwnedCount(item) {
-    this.modifyItemOwnedCount(item, 1);
-  }
-
-  modifyItemOwnedCount(item, countModifier: number) {
-    if (!this._isValidItem(item)) {
-      //do some kind of error handling
-      return;
-    }
-
-    if (!this.inventory.hasOwnProperty(item.name)) {
-      this._initAndAddInventoryItem(item.name);
-    }
-
-    let inventoryItem = this.inventory[item.name];
-    inventoryItem.numberOwned += countModifier;
-
-    this._persistInventoryUpdates();
-  }
-
-  modifyItemSoldCount(item, countModifier: number) {
-    if (!this._isValidItem(item)) {
-      //do some kind of error handling
-      return;
-    }
-
-    if (!this.inventory.hasOwnProperty(item.name)) {
-      this._initAndAddInventoryItem(item.name);
-    }
-
-    var inventoryItem = this.inventory[item.name];
-    inventoryItem.numberSold += countModifier;
-
-    this._persistInventoryUpdates();
+    var startingOwnedCount = this.inventory[item.name] ? this.inventory[item.name].numberOwned : 0;
+    this.inventoryService.setItemOwnedCount(item.name, startingOwnedCount+1);
   }
 
   transferCountFromOwnedToSold(item, countTransferred: number) {
-    if (!this._isValidItem(item)) {
-      return;
+    var startingOwnedCount = this.inventory[item.name] ? this.inventory[item.name].numberOwned : 0;
+    var startingSoldCount = this.inventory[item.name] ? this.inventory[item.name].numberSold : 0;
+
+    if (startingOwnedCount < countTransferred) {
+      countTransferred = startingOwnedCount;
     }
-
-    if (this.inventory[item.name].numberOwned < countTransferred) {
-      countTransferred = this.inventory[item.name].numberOwned;
-    }
-    this.modifyItemOwnedCount(item, countTransferred * -1);
-    this.modifyItemSoldCount(item, countTransferred);
-  }
-
-  _initAndAddInventoryItem(itemName: string) {
-    this.inventory[itemName] = {
-      'numberOwned': 0,
-      'numberSold': 0
-    };
-  }
-
-  _isValidItem(item) {
-    return (item.name && this.items.hasOwnProperty(item.name + ""));
-  }
-
-  _persistInventoryUpdates() {
-    return;
+    
+    this.inventoryService.setItemOwnedCount(item.name, startingOwnedCount - countTransferred);
+    this.inventoryService.setItemSoldCount(item.name, startingSoldCount + countTransferred);
   }
 }
