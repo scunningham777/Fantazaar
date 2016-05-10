@@ -1,6 +1,6 @@
-import {ItemsService} from '../items/items.service'
+import {ItemsService} from '../items-service/items-service'
 import {Injectable} from 'angular2/core';
-import {EntityManager} from '../EntityManager';
+import {EntityManager} from '../entity-manager';
 
 @Injectable()
 export class InventoryService {

@@ -1,28 +1,22 @@
 import {App, Platform} from 'ionic-angular';
 import {TabsPage} from './pages/tabs/tabs';
-import {ItemsService} from './DAL/items/items.service';
-import {InventoryService} from './DAL/inventory/inventory.service';
-import {EntityManager} from './DAL/EntityManager';
+import {ItemsService} from './providers/items-service/items-service';
+import {InventoryService} from './providers/inventory-service/inventory-service';
+import {EntityManager} from './providers/entity-manager';
 
 // https://angular.io/docs/ts/latest/api/core/Type-interface.html
 import {Type} from 'angular2/core';
 
-
-const dataAccessProviders = [
+var providers = [
   ItemsService,
   InventoryService,
   EntityManager
 ];
-const utilProviders = [
-  
-];
-var providers = [];
-const aggregateProviders = providers.concat(dataAccessProviders).concat(utilProviders);
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
   config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
-  providers: aggregateProviders
+  providers: providers
 })
 export class MyApp {
   rootPage: Type = TabsPage;

@@ -1,35 +1,13 @@
 import {Page} from 'ionic-angular';
 import {NavController} from 'ionic-angular';
 import {ValuesPipe} from '../../utils/values.pipe';
-import {ItemDetailsComponent} from '../itemDetails/itemDetails.component';
-import {ItemsService} from '../../DAL/items/items.service';
-import {InventoryService} from '../../DAL/inventory/inventory.service';
+import {ItemDetailsPage} from '../item-details-page/item-details-page';
+import {ItemsService} from '../../providers/items-service/items-service';
+import {InventoryService} from '../../providers/inventory-service/inventory-service';
 
 @Page({
   pipes: [ValuesPipe],
-  template: `
-    <ion-navbar *navbar>
-        <ion-title>Fantazaar - All Items</ion-title>
-    </ion-navbar>
-    
-    <ion-content class="layout-primary">
-        <div class="layout-restrainWidth800">
-            <div *ngFor="#item of items | values; #index=index" class="itemTile itemTile-bg{{index%7}}">
-                <div class="itemTile_content" (click)="showItemDetails(item)">{{item.name}}</div>
-                <div class="itemTile_buttonRow">
-                    <div class="itemTile_button" (click)="incrementItemOwnedCount(item)">
-                        <span class="itemTile_countText">{{inventory[item.name] ? (inventory[item.name].numberOwned || 0) : 0}}</span>
-                        owned
-                    </div>
-                    <div class="itemTile_button" (click)="transferCountFromOwnedToSold(item, 1)">
-                        <span class="itemTile_countText">{{inventory[item.name] ? (inventory[item.name].numberSold || 0) : 0}}</span>
-                        sold
-                    </div>
-                </div>
-            </div>
-        </div>
-     </ion-content>
-  `
+  templateUrl: 'build/pages/item-list-page/item-list-page.html'
 })
 export class ItemListComponent {
   nav: NavController;
@@ -53,7 +31,7 @@ export class ItemListComponent {
   }
 
   showItemDetails(item) {
-    this.nav.push(ItemDetailsComponent, { 'selectedItem': item.name });
+    this.nav.push(ItemDetailsPage, { 'selectedItem': item.name });
   }
 
   incrementItemOwnedCount(item) {

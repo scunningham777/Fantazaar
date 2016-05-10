@@ -1,5 +1,5 @@
 import {Page} from 'ionic-angular';
-import {ItemListComponent} from '../itemList/itemList.component';
+import {ItemListComponent} from '../item-list-page/item-list-page';
 import {Page2} from '../page2/page2';
 import {Page3} from '../page3/page3';
 
