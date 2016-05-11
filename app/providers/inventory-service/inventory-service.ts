@@ -2,85 +2,100 @@ import {ItemsService} from '../items-service/items-service'
 import {Injectable} from 'angular2/core';
 import {EntityManager} from '../entity-manager';
 
+const INVENTORY_TABLE_NAME = "inventory";
+
 @Injectable()
 export class InventoryService {
-  private _inventory;
-  private _itemsService: ItemsService;
-  private _entityManager: EntityManager;
-  private _tableName = "inventory";
+  private _inventory: Promise<InventoryEntry[]>;
   
-  constructor(itemsService: ItemsService, entityManager: EntityManager) {
-    this._itemsService = itemsService;
-    this._entityManager = entityManager;
-    
+  constructor(
+    private _itemsService: ItemsService, 
+    private _entityManager: EntityManager
+  ) {
     this._initInventory();
   }
   
-  getInventory() {
-    var filteredPromise = new Promise((resolve, reject) => {
-      this._entityManager.getTable(this._tableName)
-        .then(inventory => {
-          if (inventory == undefined) {
-            this._inventory = {};
+  getInventory(): Promise<InventoryEntry[]> {
+    this._inventory = new Promise((resolve, reject) => {
+      this._entityManager.getTable(INVENTORY_TABLE_NAME)
+        .then((inventory: any) => {
+          if (!inventory) {
+            inventory = {};
           } else {
-            this._inventory = JSON.parse(inventory);
+            inventory = JSON.parse(inventory);
           }
-          resolve(this._inventory);
+          resolve(inventory);
        });
     });
     
-    return filteredPromise; 
+    return this._inventory; 
   }
   
   setItemOwnedCount(itemName: string, count: number) {
-    if (!this._isValidItem(itemName)) {
-      //do some kind of error handling
-      return;
-    }
+    this._inventory
+      .then(inventory => {
+        //TODO: do some kind of error handling to make sure item is valid
 
-    if (!this._inventory.hasOwnProperty(itemName)) {
-      this._initAndAddInventoryItem(itemName);
-    }
+        if (!inventory.hasOwnProperty(itemName)) {
+           inventory[itemName] = new InventoryEntry(itemName);
+        }
 
-    this._inventory[itemName].numberOwned = count;
+        inventory[itemName].numberOwned = count;
 
-    this._persistInventoryUpdates();
+        this._persistInventoryUpdates(inventory);
+      });
   }
 
   setItemSoldCount(itemName: string, count: number) {
-    if (!this._isValidItem(itemName)) {
-      //do some kind of error handling
-      return;
-    }
+    this._inventory
+      .then(inventory => {
+        //TODO: do some kind of error handling to make sure item is valid
 
-    if (!this._inventory.hasOwnProperty(itemName)) {
-      this._initAndAddInventoryItem(itemName);
-    }
+        if (!inventory.hasOwnProperty(itemName)) {
+          inventory[itemName] = new InventoryEntry(itemName);
+        }
 
-    this._inventory[itemName].numberSold = count;
+        inventory[itemName].numberSold = count;
 
-    this._persistInventoryUpdates();
+        this._persistInventoryUpdates(inventory);
+      });
+    
   }
   
-  _initInventory() {
+  _initInventory(): void {
     this.getInventory();
   }
   
   _initAndAddInventoryItem(itemName: string) {
-    const startingNumberOwned = 0;
-    const startingNumberSold = 0;
-    this._inventory[itemName] = {
-      'numberOwned': startingNumberOwned,
-      'numberSold': startingNumberSold
-    };
-    this._persistInventoryUpdates();
+    const STARTING_NUM_OWNED = 0;
+    const STARTING_NUM_SOLD = 0;
+    this._inventory
+      .then(inventory => {
+        inventory[itemName] = {
+          'numberOwned': STARTING_NUM_OWNED,
+          'numberSold': STARTING_NUM_SOLD
+        };
+        this._persistInventoryUpdates(inventory);
+      });
   }
 
-  _isValidItem(itemName: string) {
-    return (itemName && this._itemsService.isValidItem(itemName));
+  _isValidItem(itemName: string): Promise<boolean> {
+    return this._itemsService.isValidItem(itemName);
   }
 
-  _persistInventoryUpdates() {
-    this._entityManager.updateTable(this._tableName, this._inventory);
+  _persistInventoryUpdates(updatedInventory) {
+    this._entityManager.updateTable(INVENTORY_TABLE_NAME, updatedInventory);
+  }
+}
+
+export class InventoryEntry {
+  itemName: string;
+  numberOwned = 0;
+  numberSold = 0;
+  
+  constructor (name: string, numOwned?: number, numSold?: number) {
+    this.itemName = name;
+    this.numberOwned = numOwned;
+    this.numberSold = numSold;
   }
 }

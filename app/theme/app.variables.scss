@@ -1,5 +1,10 @@
 // http://ionicframework.com/docs/v2/theming/
 
+// Ionic Shared Functions
+// --------------------------------------------------
+// Makes Ionic Sass functions available to your App
+
+@import 'globals.core';
 
 // App Shared Variables
 // --------------------------------------------------
@@ -33,19 +38,19 @@ $colors: (
   favorite:   #69BB7B
 );
 
-$toolbar-background: map-get($map: $colors, $key: fz-primary-dark);
-$toolbar-border-color: map-get($map: $colors, $key: fz-primary-dark);
-$toolbar-text-color: map-get($map: $colors, $key: fz-primary-light);
+$toolbar-background: color($colors, fz-primary-light);
+$toolbar-border-color: color($colors, fz-primary-light);
+$toolbar-text-color: color($colors, fz-primary-dark);
 
-$tabbar-ios-background: map-get($map: $colors, $key: fz-primary-light);
-$tabbar-md-background: map-get($map: $colors, $key: fz-primary-light);
-$tabbar-wp-background: map-get($map: $colors, $key: fz-primary-light);
+$tabbar-ios-background: color($colors, fz-primary-light);
+$tabbar-md-background: color($colors, fz-primary-light);
+$tabbar-wp-background: color($colors, fz-primary-light);
 
-$tab-button-ios-inactive-color: map-get($map: $colors, $key: fz-primary-dark);
-$tab-button-md-inactive-color: map-get($map: $colors, $key: fz-primary-dark);
-$tab-button-wp-inactive-color: map-get($map: $colors, $key: fz-primary-dark);
+$tab-button-ios-inactive-color: color($colors, fz-primary-dark);
+$tab-button-md-inactive-color: color($colors, fz-primary-dark);
+$tab-button-wp-inactive-color: color($colors, fz-primary-dark);
 
-$tab-button-ios-active-color: map-get($map: $colors, $key: fz-yellow);
-$tab-button-md-active-color: map-get($map: $colors, $key: fz-yellow);
-$tab-button-wp-active-color: map-get($map: $colors, $key: fz-yellow);
+$tab-button-ios-active-color: color($colors, fz-yellow);
+$tab-button-md-active-color: color($colors, fz-yellow);
+$tab-button-wp-active-color: color($colors, fz-yellow);
 

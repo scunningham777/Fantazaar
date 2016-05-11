@@ -1,3 +1,4 @@
+import 'rxjs/Rx';
 import {App, Platform} from 'ionic-angular';
 import {TabsPage} from './pages/tabs/tabs';
 import {ItemsService} from './providers/items-service/items-service';

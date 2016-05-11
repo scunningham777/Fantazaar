@@ -18,34 +18,60 @@ export class ItemsService {
     }
 
     getAllItems(): Promise<Item[]> {
-        
         return this._getItems();
     }
 
-    getItemById(requestedId: number): Item {
+    getItemById(requestedId: number): Promise<Item> {
         return this._getItemByProperty('_id', requestedId);
     }
     
-    getItemByName(requestedName: string): Item {
+    getItemByName(requestedName: string): Promise<Item> {
         return this._getItemByProperty('name', requestedName);
     }
+    
+    getItemSourceList(requestedItem: Item): Promise<Array<{source_id: number, source_name: string, quantity_needed:number}>> {
+        let sourceListPromise = new Promise((resolve, reject) => {
+            this._getItems().then((items: Item[]) => {
+                let sourceList = requestedItem.sources
+                    .filter(Array.isArray)[0]
+                    .map(source => {
+                        if (!items[source.source_id]) return;
+                        return {
+                            source_id: source.source_id, 
+                            source_name: items[source.source_id].name, 
+                            quantity_needed: source.quantity_needed
+                        };
+                    });
+                resolve(sourceList);
+            })    
+        })
+        
+        return sourceListPromise;
+    }
 
-    isValidItem(itemName: string): boolean {
-        return (itemName && this._getItems().hasOwnProperty(itemName));
+    isValidItem(itemName: string): Promise<boolean> {
+        let isValidAsPromise = new Promise((resolve, reject) => {
+            this._getItems()
+                .then((items: Item[]) => {
+                    resolve(itemName && items.hasOwnProperty(itemName));
+                });
+        });
+        return isValidAsPromise;
     }
     
-    _getItemByProperty(propertyName: string, comparisonValue: any): Item {
-        let matchingItem: Item;
-        this._allItems
-            .then((value: Item[]) => {
-                for (let i=0; i<value.length; i++) {
-                    if (value[i][propertyName] = comparisonValue) {
-                        matchingItem = value[i];
-                        break;
+    _getItemByProperty(propertyName: string, comparisonValue: any): Promise<Item> {
+        let matchingItemPromise = new Promise((resolve, reject) => {
+            this._getItems()
+                .then((items: Item[]) => {
+                    for (let i=0; i<items.length; i++) {
+                        if (items[i][propertyName] = comparisonValue) {
+                            resolve(items[i]);
+                        }
                     }
-                }
-            })
-        return matchingItem;
+                });
+        });
+        
+        return matchingItemPromise;
     }
 
     _getItems(): Promise<Item[]> {

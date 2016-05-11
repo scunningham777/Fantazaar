@@ -1,47 +1,53 @@
 import {Page, NavController, NavParams} from 'ionic-angular';
-import {ItemsService} from '../../providers/items-service/items-service'
+import {ItemsService, Item} from '../../providers/items-service/items-service'
 
 @Page({
     templateUrl: 'build/pages/item-details-page/item-details-page.html'
 })
 
 export class ItemDetailsPage {
-  nav:NavController;
-  params: NavParams;
-  itemsService: ItemsService;
-  item;
-  hasStringSources;
-  hasBazaarSources;
-  stringSources;
-  bazaarSources;
+  item: Item;
+  hasStringSources: boolean;
+  hasBazaarSources: boolean;
+  stringSources: string[];
+  bazaarSources: Promise<any[]>;
   
-  constructor(nav:NavController, params: NavParams, itemsService: ItemsService) {
-    this.nav = nav;
-    this.params = params;
-    this.itemsService = itemsService;
+  constructor(
+    private _nav: NavController, 
+    private _params: NavParams, 
+    private _itemsService: ItemsService) {
   }
   
   onPageWillEnter(){
-		this.item = this.itemsService.getItemByName(this.params.data.selectedItem);
-    this.hasStringSources = ItemDetailsPage._hasStringSources(this.item);
-    this.hasBazaarSources = ItemDetailsPage._hasBazaarSources(this.item);
-    this.stringSources = this.hasStringSources?this.item.sources.filter(ItemDetailsPage._isString):[];
-    this.bazaarSources = this.hasBazaarSources?this.item.sources.filter(Array.isArray)[0]:[];
+		this._itemsService.getItemById(this._params.data.selectedItemId)
+      .then((item: Item) => {
+        this.item = item;
+        this.hasStringSources = this._hasStringSources();
+        this.hasBazaarSources = this._hasBazaarSources();
+        this.stringSources = this.hasStringSources?this.item.sources.filter(ItemDetailsPage._isString):[];
+        this._initBazaarSources();
+      });
 	}
   
-  showItemDetails(itemName) {
-    this.nav.push(ItemDetailsPage, {'selectedItem': itemName});
+  showItemDetails(itemName): void {
+    this._nav.push(ItemDetailsPage, {'selectedItemId': itemName});
   }
   
-  static _hasBazaarSources(item) {
-    return item.sources.some(Array.isArray);
+  _initBazaarSources(): void {
+    if (this.hasBazaarSources) {
+      this.bazaarSources = this._itemsService.getItemSourceList(this.item)
+    }
   }
   
-  static _hasStringSources(item) {
-    return item.sources.some(ItemDetailsPage._isString);
+  _hasBazaarSources(): boolean {
+    return this.item.sources.some(Array.isArray);
   }
   
-  static _isString(source) {
+  _hasStringSources(): boolean {
+    return this.item.sources.some(ItemDetailsPage._isString);
+  }
+  
+  static _isString(source): boolean {
     return (typeof source === "string");
   }
 }

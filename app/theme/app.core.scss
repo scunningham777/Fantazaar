@@ -7,7 +7,7 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
-@import "../pages/itemList/itemList.component";
+@import "../pages/item-list-page/item-list-page";
 @import "../pages/page2/page2";
 @import "../pages/page3/page3";
 
@@ -15,8 +15,8 @@
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     margin: 0px;
-    background-color: map-get($map: $colors, $key: fz-primary-dark);
-    color: map-get($map: $colors, $key: fz-primary-light);
+    background-color: color($colors, fz-primary-dark);
+    color: color($colors, fz-primary-light);
 }
 
 body * {
@@ -25,8 +25,8 @@ body * {
 
 /* LAYOUT */
 .layout-primary{
-    background-color: map-get($map: $colors, $key: fz-primary-dark);
-    color: map-get($map: $colors, $key: fz-primary-light);
+    background-color: color($colors, fz-primary-dark);
+    color: color($colors, fz-primary-light);
 }
 
 .layout-restrainWidth800 {
