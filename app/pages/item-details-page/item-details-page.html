@@ -1,5 +1,5 @@
 <ion-navbar *navbar>
-  <ion-title>Fantazaar - {{item.name}}</ion-title>
+  <ion-title>{{item?.name}}</ion-title>
 </ion-navbar>
 
 <ion-content class="layout-primary">
@@ -17,7 +17,7 @@
       This item can be purchased form the Bazaar after selling the following loot items:
       <ul>
         <li *ngFor="#bazaarSource of bazaarSources | async">
-          <a (click)="showItemDetails(bazaarSource.source_id)">{{bazaarSource.source_id}}</a> - {{bazaarSource.quantity_needed}}
+          <a (click)="showItemDetails(bazaarSource.source_id)">{{bazaarSource?.source_name}}</a> - {{bazaarSource?.quantity_needed}}
           needed
         </li>
       </ul>

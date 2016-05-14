@@ -15,6 +15,16 @@ export class InventoryService {
     this._initInventory();
   }
   
+  clearEntireInventory(): Promise<boolean> {
+    let clearedPromise = new Promise((resolve, reject) => {
+      this._persistInventoryUpdates("")
+        .then(result => {
+          resolve(true);
+        });
+    })
+    return clearedPromise;
+  }
+  
   getInventory(): Promise<InventoryEntry[]> {
     this._inventory = new Promise((resolve, reject) => {
       this._entityManager.getTable(INVENTORY_TABLE_NAME)
@@ -32,7 +42,7 @@ export class InventoryService {
   }
   
   setItemOwnedCount(itemName: string, count: number) {
-    this._inventory
+    this.getInventory()
       .then(inventory => {
         //TODO: do some kind of error handling to make sure item is valid
 
@@ -47,7 +57,7 @@ export class InventoryService {
   }
 
   setItemSoldCount(itemName: string, count: number) {
-    this._inventory
+    this.getInventory()
       .then(inventory => {
         //TODO: do some kind of error handling to make sure item is valid
 
@@ -69,7 +79,7 @@ export class InventoryService {
   _initAndAddInventoryItem(itemName: string) {
     const STARTING_NUM_OWNED = 0;
     const STARTING_NUM_SOLD = 0;
-    this._inventory
+    this.getInventory()
       .then(inventory => {
         inventory[itemName] = {
           'numberOwned': STARTING_NUM_OWNED,
@@ -83,8 +93,8 @@ export class InventoryService {
     return this._itemsService.isValidItem(itemName);
   }
 
-  _persistInventoryUpdates(updatedInventory) {
-    this._entityManager.updateTable(INVENTORY_TABLE_NAME, updatedInventory);
+  _persistInventoryUpdates(updatedInventory): Promise<any> {
+    return this._entityManager.updateTable(INVENTORY_TABLE_NAME, updatedInventory);
   }
 }
 

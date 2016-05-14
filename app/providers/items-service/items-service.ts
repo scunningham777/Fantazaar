@@ -35,12 +35,16 @@ export class ItemsService {
                 let sourceList = requestedItem.sources
                     .filter(Array.isArray)[0]
                     .map(source => {
-                        if (!items[source.source_id]) return;
-                        return {
+                        let getItemByIdSync = () => items.find(item => item._id == source.source_id); 
+                        
+                        if (!getItemByIdSync()) return;
+                        
+                        let hydratedSource = {
                             source_id: source.source_id, 
-                            source_name: items[source.source_id].name, 
+                            source_name: getItemByIdSync().name, 
                             quantity_needed: source.quantity_needed
                         };
+                        return hydratedSource;
                     });
                 resolve(sourceList);
             })    
@@ -62,13 +66,10 @@ export class ItemsService {
     _getItemByProperty(propertyName: string, comparisonValue: any): Promise<Item> {
         let matchingItemPromise = new Promise((resolve, reject) => {
             this._getItems()
-                .then((items: Item[]) => {
-                    for (let i=0; i<items.length; i++) {
-                        if (items[i][propertyName] = comparisonValue) {
-                            resolve(items[i]);
-                        }
-                    }
-                });
+                .then( items => {
+                    let foundItem = items.find( item => item[propertyName] === comparisonValue );
+                    resolve(foundItem);         
+                })
         });
         
         return matchingItemPromise;

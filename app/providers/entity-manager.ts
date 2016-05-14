@@ -11,11 +11,11 @@ export class EntityManager {
 		this.storage = new Storage(SqlStorage, {name: DATABASE_NAME});
 	}
 
-  updateTable(tableName: string, tableData) {
+  updateTable(tableName: string, tableData): Promise<any> {
     if (typeof tableData === "object") {
       tableData = JSON.stringify(tableData);
     }
-    this.storage.set(tableName.toLowerCase(), tableData);
+    return this.storage.set(tableName.toLowerCase(), tableData);
   }
   
   getTable(tableName: string): Promise<string> {

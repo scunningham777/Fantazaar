@@ -36,6 +36,10 @@ export class ItemDetailsPage {
   _initBazaarSources(): void {
     if (this.hasBazaarSources) {
       this.bazaarSources = this._itemsService.getItemSourceList(this.item)
+        // .then((result) => {
+        //   debugger;
+        //   return result;
+        // })
     }
   }
   

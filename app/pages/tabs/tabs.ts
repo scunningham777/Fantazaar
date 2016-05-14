@@ -1,7 +1,8 @@
+import {Type} from 'angular2/core';
 import {Page} from 'ionic-angular';
 import {ItemListPage} from '../item-list-page/item-list-page';
-import {Page2} from '../page2/page2';
-import {Page3} from '../page3/page3';
+import {ItemRecipePage} from '../item-recipe-page/item-recipe-page';
+import {SettingsPage} from '../settings-page/settings-page';
 
 
 @Page({
@@ -10,7 +11,9 @@ import {Page3} from '../page3/page3';
 export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  tab1Root: any = ItemListPage;
-  tab2Root: any = Page2;
-  tab3Root: any = Page3;
+  tabs: Array<{root: Type, name: string, icon: string}> = [
+    {root: ItemListPage, name: "Full Inventory", icon: "list"},
+    {root: ItemRecipePage, name: "Item Recipe", icon: "flask"},
+    {root: SettingsPage, name: "Settings", icon: "cog"}
+  ]
 }
