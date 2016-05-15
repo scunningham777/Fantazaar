@@ -15,7 +15,8 @@ export class ItemDetailsPage {
   constructor(
     private _nav: NavController, 
     private _params: NavParams, 
-    private _itemsService: ItemsService) {
+    private _itemsService: ItemsService
+  ) {
   }
   
   onPageWillEnter(){

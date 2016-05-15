@@ -7,10 +7,10 @@
     <div *ngFor="#item of fullItems; #index=index" class="itemTile itemTile-bg{{index%7}}">
       <div class="itemTile_content" (click)="showItemDetails(item)">{{item.name}}</div>
       <div class="itemTile_buttonRow">
-        <div class="itemTile_button" (click)="incrementItemOwnedCount(item)">
+        <div class="itemTile_button" (click)="incrementItemOwnedCount(item)" (press)="editItemOwnedCount(item)">
           <span class="itemTile_countText">{{item.numberOwned}}</span> owned
         </div>
-        <div class="itemTile_button" (click)="transferCountFromOwnedToSold(item, 1)">
+        <div class="itemTile_button" (click)="transferCountFromOwnedToSold(item, 1)" (press)="editItemSoldCount(item)">
           <span class="itemTile_countText">{{item.numberSold}}</span> sold
         </div>
       </div>

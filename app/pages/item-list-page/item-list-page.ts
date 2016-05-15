@@ -1,9 +1,10 @@
-import {Page} from 'ionic-angular';
+import {Page, Modal} from 'ionic-angular';
 import {NavController} from 'ionic-angular';
 import {ValuesPipe} from '../../utils/values.pipe';
 import {ItemDetailsPage} from '../item-details-page/item-details-page';
 import {ItemsService, Item} from '../../providers/items-service/items-service';
 import {InventoryService, InventoryEntry} from '../../providers/inventory-service/inventory-service';
+import {EditItemNumberModalPage} from '../edit-item-number-modal/edit-item-number-modal';
 
 @Page({
   pipes: [ValuesPipe],
@@ -28,36 +29,18 @@ export class ItemListPage {
   showItemDetails(item: Item) {
     this._nav.push(ItemDetailsPage, { 'selectedItemId': item._id });
   }
+ 
+  editItemOwnedCount(item: ItemWithCounts) {
+    let editItemOwnedCountModal = Modal.create(EditItemNumberModalPage, {item: item});
+    editItemOwnedCountModal.onDismiss(data => {
+      this._inventoryService.setItemOwnedCount(data.item_name, data.numberOwned);
+    })
+    this._nav.present(editItemOwnedCountModal);
+  }
   
-  // getItemOwnedCount(item: Item): Promise<number> {
-  //   let numberOwnedPromise = new Promise((resolve, reject) => {
-  //     this.inventory
-  //       .then(inventory => {
-  //         let numberOwned = 0;
-  //         if (!!inventory[item.name]){
-  //           numberOwned = inventory[item.name].numberOwned || 0;
-  //         }
-  //         resolve(numberOwned);
-  //       })
-  //   });
+  editItemSoldCount(item: ItemWithCounts) {
     
-  //   return numberOwnedPromise;
-  // }
-  
-  // getItemSoldCount(item: Item): Promise<number> {
-  //   let numberSoldPromise = new Promise((resolve, reject) => {
-  //     this.inventory
-  //       .then(inventory => {
-  //         let numberSold = 0;
-  //         if (!!inventory[item.name]){
-  //           numberSold = inventory[item.name].numberSold || 0;
-  //         }
-  //         resolve(numberSold);
-  //       })
-  //   });
-    
-  //   return numberSoldPromise;
-  // }
+  }
 
   incrementItemOwnedCount(item: ItemWithCounts): void {
     this._inventoryService.setItemOwnedCount(item.name, ++item.numberOwned);    

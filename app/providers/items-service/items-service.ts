@@ -1,7 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 
-let itemsUrl = 'assets/seed-data/items.json';
+const ITEMS_URL = 'assets/seed-data/items.json';
 
 export interface Item {
     _id: number,
@@ -77,7 +77,7 @@ export class ItemsService {
 
     _getItems(): Promise<Item[]> {
         if (!this._allItems) {
-            this._allItems = this._http.get(itemsUrl)
+            this._allItems = this._http.get(ITEMS_URL)
                 .map((response: Response) => {
                     return <Item[]>response.json()
                 })

@@ -35,7 +35,11 @@ export class InventoryService {
             inventory = JSON.parse(inventory);
           }
           resolve(inventory);
-       });
+        })
+        .catch(reason => {
+          console.dir(reason.err);
+          window.alert('Failed to load table ' + INVENTORY_TABLE_NAME + ': ' + reason.err.message)
+        });
     });
     
     return this._inventory; 

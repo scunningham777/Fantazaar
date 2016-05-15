@@ -1,0 +1,19 @@
+<ion-navbar *navbar>
+  <ion-title>{{item?.name}}</ion-title>
+</ion-navbar>
+
+<ion-content class="layout-primary">
+  <div class="layout-contentPadded">
+    <div class="layout-restrainWidth800">
+      Enter the number of this item that you have in your inventory:
+      <br/><br/>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Number Owned</ion-label>
+          <ion-input type="number" [(ngModel)]="item.numberOwned"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button block fz-primary-light (click)="submit()">Submit</button>
+    </div>
+  </div>
+</ion-content>
