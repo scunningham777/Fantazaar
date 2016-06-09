@@ -33,13 +33,17 @@ export class ItemListPage {
   editItemOwnedCount(item: ItemWithCounts) {
     let editItemOwnedCountModal = Modal.create(EditItemNumberModalPage, {item: item});
     editItemOwnedCountModal.onDismiss(data => {
-      this._inventoryService.setItemOwnedCount(data.item_name, data.numberOwned);
+      this._inventoryService.setItemOwnedCount(data.item_name, data.newCount);
     })
     this._nav.present(editItemOwnedCountModal);
   }
   
   editItemSoldCount(item: ItemWithCounts) {
-    
+    let editItemSoldCountModal = Modal.create(EditItemNumberModalPage, {item: item});
+    editItemSoldCountModal.onDismiss(data => {
+      this._inventoryService.setItemSoldCount(data.item_name, data.newCount);
+    })
+    this._nav.present(editItemSoldCountModal);
   }
 
   incrementItemOwnedCount(item: ItemWithCounts): void {

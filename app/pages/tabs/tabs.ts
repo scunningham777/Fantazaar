@@ -1,4 +1,4 @@
-import {Type} from 'angular2/core';
+import {Type} from '@angular/core';
 import {Page} from 'ionic-angular';
 import {ItemListPage} from '../item-list-page/item-list-page';
 import {ItemRecipePage} from '../item-recipe-page/item-recipe-page';

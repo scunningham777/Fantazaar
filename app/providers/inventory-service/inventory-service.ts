@@ -1,5 +1,5 @@
 import {ItemsService} from '../items-service/items-service'
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 import {EntityManager} from '../entity-manager';
 
 const INVENTORY_TABLE_NAME = "inventory";

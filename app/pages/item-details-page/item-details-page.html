@@ -7,7 +7,7 @@
     <div *ngIf="hasStringSources">
       This item can be procured from the following sources:
       <ul>
-        <li *ngFor="#stringSource of stringSources" class="sourcesList_stringSource">
+        <li *ngFor="let stringSource of stringSources" class="sourcesList_stringSource">
           {{stringSource}}
         </li>
       </ul>
@@ -16,7 +16,7 @@
     <div *ngIf="hasBazaarSources">
       This item can be purchased form the Bazaar after selling the following loot items:
       <ul>
-        <li *ngFor="#bazaarSource of bazaarSources | async">
+        <li *ngFor="let bazaarSource of bazaarSources | async">
           <a (click)="showItemDetails(bazaarSource.source_id)">{{bazaarSource?.source_name}}</a> - {{bazaarSource?.quantity_needed}}
           needed
         </li>

@@ -6,7 +6,7 @@ import {InventoryService} from './providers/inventory-service/inventory-service'
 import {EntityManager} from './providers/entity-manager';
 
 // https://angular.io/docs/ts/latest/api/core/Type-interface.html
-import {Type} from 'angular2/core';
+import {Type} from '@angular/core';
 
 var providers = [
   ItemsService,

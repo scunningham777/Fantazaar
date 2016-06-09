@@ -18,7 +18,7 @@ export class EditItemNumberModalPage {
   submit() {
     let data = {
       item_id: this.item._id,
-      numberOwned: this.item.numberOwned
+      newCount: this.item.numberOwned
     }
     this._viewCtrl.dismiss(data);
   }
