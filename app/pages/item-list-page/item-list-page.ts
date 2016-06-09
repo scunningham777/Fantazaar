@@ -1,4 +1,5 @@
-import {Page, Modal} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Modal} from 'ionic-angular';
 import {NavController} from 'ionic-angular';
 import {ValuesPipe} from '../../utils/values.pipe';
 import {ItemDetailsPage} from '../item-details-page/item-details-page';
@@ -6,7 +7,7 @@ import {ItemsService, Item} from '../../providers/items-service/items-service';
 import {InventoryService, InventoryEntry} from '../../providers/inventory-service/inventory-service';
 import {EditItemNumberModalPage} from '../edit-item-number-modal/edit-item-number-modal';
 
-@Page({
+@Component({
   pipes: [ValuesPipe],
   templateUrl: 'build/pages/item-list-page/item-list-page.html'
 })
@@ -21,7 +22,7 @@ export class ItemListPage {
     private _inventoryService: InventoryService
   ) {}
 
-  onPageWillEnter() {
+  ionViewWillEnter() {
     this._initFullItems();
     
   }

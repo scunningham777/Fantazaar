@@ -1,7 +1,8 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 import {ItemsService, Item} from '../../providers/items-service/items-service'
 
-@Page({
+@Component({
     templateUrl: 'build/pages/item-details-page/item-details-page.html'
 })
 
@@ -19,7 +20,7 @@ export class ItemDetailsPage {
   ) {
   }
   
-  onPageWillEnter(){
+  ionViewWillEnter(){
 		this._itemsService.getItemById(this._params.data.selectedItemId)
       .then((item: Item) => {
         this.item = item;

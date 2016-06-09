@@ -1,7 +1,8 @@
-import {Page, NavController, Toast} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, Toast} from 'ionic-angular';
 import {InventoryService} from '../../providers/inventory-service/inventory-service'
 
-@Page({
+@Component({
   templateUrl: 'build/pages/settings-page/settings-page.html'
 })
 export class SettingsPage {

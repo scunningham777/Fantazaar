@@ -1,7 +1,8 @@
-import {Page, NavParams, ViewController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavParams, ViewController} from 'ionic-angular';
 import {ItemsService, Item} from '../../providers/items-service/items-service';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/edit-item-number-modal/edit-item-number-modal.html',
 })
 export class EditItemNumberModalPage {

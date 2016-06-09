@@ -1,7 +1,7 @@
-import {Page} from 'ionic-angular';
+import {Component} from '@angular/core';
 
 
-@Page({
+@Component({
   templateUrl: 'build/pages/item-recipe-page/item-recipe-page.html'
 })
 export class ItemRecipePage {}

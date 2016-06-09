@@ -1,5 +1,6 @@
 import 'rxjs/Rx';
-import {App, Platform} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Platform, ionicBootstrap} from 'ionic-angular';
 import {TabsPage} from './pages/tabs/tabs';
 import {ItemsService} from './providers/items-service/items-service';
 import {InventoryService} from './providers/inventory-service/inventory-service';
@@ -14,10 +15,8 @@ var providers = [
   EntityManager
 ];
 
-@App({
+@Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
-  providers: providers
 })
 export class MyApp {
   rootPage: Type = TabsPage;
@@ -41,3 +40,10 @@ export class MyApp {
     });
   }
 }
+
+// Pass the main app component as the first argument
+// Pass any providers for your app in the second argument
+// Set any config for your app as the third argument:
+// http://ionicframework.com/docs/v2/api/config/Config/
+
+ionicBootstrap(MyApp, [providers]);
