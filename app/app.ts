@@ -5,11 +5,12 @@ import {TabsPage} from './pages/tabs/tabs';
 import {ItemsService} from './providers/items-service/items-service';
 import {InventoryService} from './providers/inventory-service/inventory-service';
 import {EntityManager} from './providers/entity-manager';
+import {providers as platformProviders} from '@ionic/platform-client-angular';
 
 // https://angular.io/docs/ts/latest/api/core/Type-interface.html
 import {Type} from '@angular/core';
 
-var providers = [
+const FZ_PROVIDERS = [
   ItemsService,
   InventoryService,
   EntityManager
@@ -41,9 +42,15 @@ export class MyApp {
   }
 }
 
+let platformConfig = {
+  'core': {
+    app_id: '04b41c15', 
+    api_key: '6bba68c0a3d88c47e37fab47aefa62921ce193d97cd65eb2'
+  }
+};
+
 // Pass the main app component as the first argument
 // Pass any providers for your app in the second argument
 // Set any config for your app as the third argument:
 // http://ionicframework.com/docs/v2/api/config/Config/
-
-ionicBootstrap(MyApp, [providers]);
+ionicBootstrap(MyApp, [FZ_PROVIDERS, platformProviders(platformConfig)]);

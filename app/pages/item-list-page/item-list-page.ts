@@ -22,7 +22,7 @@ export class ItemListPage {
     private _inventoryService: InventoryService
   ) {}
 
-  ionViewWillEnter() {
+  ngOnInit() {
     this._initFullItems();
     
   }
