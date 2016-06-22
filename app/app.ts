@@ -5,7 +5,7 @@ import {TabsPage} from './pages/tabs/tabs';
 import {ItemsService} from './providers/items-service/items-service';
 import {InventoryService} from './providers/inventory-service/inventory-service';
 import {EntityManager} from './providers/entity-manager';
-import {providers as platformProviders} from '@ionic/platform-client-angular';
+import {CloudSettings, provideCloud} from '@ionic/cloud-angular';
 
 // https://angular.io/docs/ts/latest/api/core/Type-interface.html
 import {Type} from '@angular/core';
@@ -49,8 +49,14 @@ let platformConfig = {
   }
 };
 
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '04b41c15'
+  }
+};
+
 // Pass the main app component as the first argument
 // Pass any providers for your app in the second argument
 // Set any config for your app as the third argument:
 // http://ionicframework.com/docs/v2/api/config/Config/
-ionicBootstrap(MyApp, [FZ_PROVIDERS, platformProviders(platformConfig)]);
+ionicBootstrap(MyApp, [FZ_PROVIDERS, provideCloud(cloudSettings)]);
