@@ -26,21 +26,23 @@ export class InventoryService {
   }
   
   getInventory(): Promise<InventoryEntry[]> {
-    this._inventory = new Promise((resolve, reject) => {
-      this._entityManager.getTable(INVENTORY_TABLE_NAME)
-        .then((inventory: any) => {
-          if (!inventory) {
-            inventory = {};
-          } else {
-            inventory = JSON.parse(inventory);
-          }
-          resolve(inventory);
-        })
-        .catch(reason => {
-          console.dir(reason.err);
-          window.alert('Failed to load table ' + INVENTORY_TABLE_NAME + ': ' + reason.err.message)
-        });
-    });
+    if (!this._inventory) {
+      this._inventory = new Promise((resolve, reject) => {
+        this._entityManager.getTable(INVENTORY_TABLE_NAME)
+          .then((inventory: any) => {
+            if (!inventory) {
+              inventory = {};
+            } else {
+              inventory = JSON.parse(inventory);
+            }
+            resolve(inventory);
+          })
+          .catch(reason => {
+            console.dir(reason.err);
+            window.alert('Failed to load table ' + INVENTORY_TABLE_NAME + ': ' + reason.err.message)
+          });
+      });
+    }
     
     return this._inventory; 
   }

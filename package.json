@@ -9,7 +9,7 @@
     "@angular/router": "^2.0.0-rc.1",
     "@ionic/platform-client-angular": "0.0.4",
     "es6-shim": "^0.35.0",
-    "ionic-angular": "^2.0.0-beta.8",
+    "ionic-angular": "^2.0.0-beta.9",
     "ionic-native": "^1.1.1",
     "ionicons": "3.0.0",
     "reflect-metadata": "^0.1.3",
@@ -27,8 +27,8 @@
     "ionic-gulp-scripts-copy": "^2.0.0",
     "run-sequence": "1.1.5"
   },
-  "name": "fantazaar-ionic2",
-  "description": "fantazaar-ionic2: An Ionic project",
+  "name": "Fantazaar",
+  "description": "Fantazaar: An app for tracking Final Fantasy XII bazaar goods",
   "version": "1.0.0",
   "cordovaPlugins": [
     "cordova-plugin-device",

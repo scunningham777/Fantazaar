@@ -5,7 +5,8 @@ import {ValuesPipe} from '../../utils/values.pipe';
 import {ItemDetailsPage} from '../item-details-page/item-details-page';
 import {ItemsService, Item} from '../../providers/items-service/items-service';
 import {InventoryService, InventoryEntry} from '../../providers/inventory-service/inventory-service';
-import {EditItemNumberModalPage} from '../edit-item-number-modal/edit-item-number-modal';
+import {EditItemOwnedModalPage} from '../edit-item-owned-modal/edit-item-owned-modal';
+import {EditItemSoldModalPage} from '../edit-item-sold-modal/edit-item-sold-modal';
 
 @Component({
   pipes: [ValuesPipe],
@@ -32,17 +33,19 @@ export class ItemListPage {
   }
  
   editItemOwnedCount(item: ItemWithCounts) {
-    let editItemOwnedCountModal = Modal.create(EditItemNumberModalPage, {item: item});
+    let editItemOwnedCountModal = Modal.create(EditItemOwnedModalPage, {item: item});
     editItemOwnedCountModal.onDismiss(data => {
-      this._inventoryService.setItemOwnedCount(data.item_name, data.newCount);
+      item.numberOwned = data.newCount;
+      this._inventoryService.setItemOwnedCount(data.itemName, data.newCount);
     })
     this._nav.present(editItemOwnedCountModal);
   }
   
   editItemSoldCount(item: ItemWithCounts) {
-    let editItemSoldCountModal = Modal.create(EditItemNumberModalPage, {item: item});
+    let editItemSoldCountModal = Modal.create(EditItemSoldModalPage, {item: item});
     editItemSoldCountModal.onDismiss(data => {
-      this._inventoryService.setItemSoldCount(data.item_name, data.newCount);
+      item.numberSold = data.newCount;
+      this._inventoryService.setItemSoldCount(data.itemName, data.newCount);
     })
     this._nav.present(editItemSoldCountModal);
   }
@@ -56,8 +59,8 @@ export class ItemListPage {
       countTransferred = item.numberOwned;
     }
    
-    item.numberOwned -= countTransferred;
-    item.numberSold += countTransferred;
+    item.numberOwned = item.numberOwned - countTransferred;
+    item.numberSold = +(item.numberSold) + +countTransferred;
     
     this._inventoryService.setItemOwnedCount(item.name, item.numberOwned);
     this._inventoryService.setItemSoldCount(item.name, item.numberSold);    
@@ -87,7 +90,7 @@ export class ItemListPage {
   }
 }
 
-interface ItemWithCounts extends Item{
+export interface ItemWithCounts extends Item{
   numberOwned: number,
   numberSold: number
 }

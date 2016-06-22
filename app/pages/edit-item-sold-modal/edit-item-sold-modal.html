@@ -1,0 +1,19 @@
+<ion-navbar *navbar>
+  <ion-title>{{itemName}}</ion-title>
+</ion-navbar>
+
+<ion-content class="layout-primary">
+  <div class="layout-contentPadded">
+    <div class="layout-restrainWidth800">
+      Enter the number of this item that you have sold since you last discovered a related bazaar good:
+      <br/><br/>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Number Sold</ion-label>
+          <ion-input type="number" [(ngModel)]="itemSoldCount"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button block fz-primary-light (click)="submit()">Submit</button>
+    </div>
+  </div>
+</ion-content>

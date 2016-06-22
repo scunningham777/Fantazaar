@@ -1,5 +1,5 @@
 <ion-navbar *navbar>
-  <ion-title>{{item?.name}}</ion-title>
+  <ion-title>{{itemName}}</ion-title>
 </ion-navbar>
 
 <ion-content class="layout-primary">
@@ -10,7 +10,7 @@
       <ion-list>
         <ion-item>
           <ion-label floating>Number Owned</ion-label>
-          <ion-input type="number" [(ngModel)]="item.numberOwned"></ion-input>
+          <ion-input type="number" [(ngModel)]="itemOwnedCount"></ion-input>
         </ion-item>
       </ion-list>
       <button block fz-primary-light (click)="submit()">Submit</button>

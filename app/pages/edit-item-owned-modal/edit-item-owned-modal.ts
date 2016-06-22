@@ -3,23 +3,26 @@ import {NavParams, ViewController} from 'ionic-angular';
 import {ItemsService, Item} from '../../providers/items-service/items-service';
 
 @Component({
-  templateUrl: 'build/pages/edit-item-number-modal/edit-item-number-modal.html',
+  templateUrl: 'build/pages/edit-item-owned-modal/edit-item-owned-modal.html',
 })
-export class EditItemNumberModalPage {
-  item: Item;
+export class EditItemOwnedModalPage {
+  itemName: string;
+  itemOwnedCount: number;
 
   constructor(
     private _itemsService: ItemsService, 
     private _viewCtrl: ViewController,
     private _params: NavParams
   ) {
-		this.item = this._params.data.item;
+		let item = this._params.data.item;
+    this.itemName = item.name;
+    this.itemOwnedCount = item.numberOwned;
   }
   
   submit() {
     let data = {
-      item_id: this.item._id,
-      newCount: this.item.numberOwned
+      itemName: this.itemName,
+      newCount: +(this.itemOwnedCount)
     }
     this._viewCtrl.dismiss(data);
   }
