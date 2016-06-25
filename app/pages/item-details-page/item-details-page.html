@@ -4,23 +4,20 @@
 
 <ion-content class="layout-primary">
   <div class="layout-restrainWidth800">
-    <div *ngIf="hasStringSources">
-      This item can be procured from the following sources:
-      <ul>
-        <li *ngFor="let stringSource of stringSources" class="sourcesList_stringSource">
+    <ion-list>
+      <ion-item-group *ngIf="hasStringSources" class="fzItemSourceGroup">
+        <ion-list-header class="fzItemSourceGroup_header">Direct find:</ion-list-header>
+        <ion-item *ngFor="let stringSource of stringSources" class="fzItemSource">
           {{stringSource}}
-        </li>
-      </ul>
-    </div>
-    <br>
-    <div *ngIf="hasBazaarSources">
-      This item can be purchased form the Bazaar after selling the following loot items:
-      <ul>
-        <li *ngFor="let bazaarSource of bazaarSources | async">
-          <a (click)="showItemDetails(bazaarSource.source_id)">{{bazaarSource?.source_name}}</a> - {{bazaarSource?.quantity_needed}}
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group *ngIf="hasBazaarSources" class="fzItemSourceGroup">
+        <ion-list-header class="fzItemSourceGroup_header">Bazaar recipe:</ion-list-header>
+        <ion-item *ngFor="let bazaarSource of bazaarSources | async" class="fzItemSource">
+          <a class="fzItemSource_itemLink" (click)="showItemDetails(bazaarSource.source_id)">{{bazaarSource?.source_name}}</a> - {{bazaarSource?.quantity_needed}}
           needed
-        </li>
-      </ul>
-    </div>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
   </div>
 </ion-content>

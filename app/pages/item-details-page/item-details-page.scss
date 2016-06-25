@@ -1,0 +1,14 @@
+@import "../../theme/app.variables"; 
+
+.fzItemSourceGroup_header {
+  color: color($colors, fz-seafoam);
+  font-size: 1.5em;
+}
+
+.fzItemSource {
+  color: color($colors, fz-primary-light);
+}
+
+.fzItemSource_itemLink {
+  color: color($colors, fz-yellow);
+} 
