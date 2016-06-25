@@ -5,14 +5,19 @@
 <ion-content class="layout-primary">
   <div class="layout-restrainWidth800">
     <ion-list>
-      <ion-item-group *ngIf="hasStringSources" class="fzItemSourceGroup">
-        <ion-list-header class="fzItemSourceGroup_header">Direct find:</ion-list-header>
-        <ion-item *ngFor="let stringSource of stringSources" class="fzItemSource">
-          {{stringSource}}
+      <ion-item-group *ngIf="hasBasicSources" class="fzItemSourceGroup">
+        <ion-list-header class="fzItemSourceGroup_header">
+          Direct find:
+        </ion-list-header>
+        <ion-item *ngFor="let basicSource of basicSources" class="fzItemSource">
+          {{basicSource.primary_text}}
+          <p class="fzItemSource_secondaryText" *ngFor="let text of basicSource.secondary_texts">{{text}}</p>
         </ion-item>
       </ion-item-group>
       <ion-item-group *ngIf="hasBazaarSources" class="fzItemSourceGroup">
-        <ion-list-header class="fzItemSourceGroup_header">Bazaar recipe:</ion-list-header>
+        <ion-list-header class="fzItemSourceGroup_header">
+          Bazaar recipe:
+        </ion-list-header>
         <ion-item *ngFor="let bazaarSource of bazaarSources | async" class="fzItemSource">
           <a class="fzItemSource_itemLink" (click)="showItemDetails(bazaarSource.source_id)">{{bazaarSource?.source_name}}</a> - {{bazaarSource?.quantity_needed}}
           needed

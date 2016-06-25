@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {ItemsService, Item} from '../../providers/items-service/items-service'
+import {ItemsService, Item, BasicItemSource} from '../../providers/items-service/items-service'
 
 @Component({
     templateUrl: 'build/pages/item-details-page/item-details-page.html'
@@ -8,9 +8,9 @@ import {ItemsService, Item} from '../../providers/items-service/items-service'
 
 export class ItemDetailsPage {
   item: Item;
-  hasStringSources: boolean;
+  hasBasicSources: boolean;
   hasBazaarSources: boolean;
-  stringSources: string[];
+  basicSources: BasicItemSource[];
   bazaarSources: Promise<any[]>;
   
   constructor(
@@ -24,9 +24,9 @@ export class ItemDetailsPage {
 		this._itemsService.getItemById(this._params.data.selectedItemId)
       .then((item: Item) => {
         this.item = item;
-        this.hasStringSources = this._hasStringSources();
+        this.hasBasicSources = this._hasBasicSources();
         this.hasBazaarSources = this._hasBazaarSources();
-        this.stringSources = this.hasStringSources?this.item.sources.filter(ItemDetailsPage._isString):[];
+        this.basicSources = this.item.basic_sources;
         this._initBazaarSources();
       });
 	}
@@ -46,14 +46,10 @@ export class ItemDetailsPage {
   }
   
   _hasBazaarSources(): boolean {
-    return this.item.sources.some(Array.isArray);
+    return !!this.item.bazaar_sources;
   }
   
-  _hasStringSources(): boolean {
-    return this.item.sources.some(ItemDetailsPage._isString);
-  }
-  
-  static _isString(source): boolean {
-    return (typeof source === "string");
+  _hasBasicSources(): boolean {
+    return !!this.item.basic_sources;
   }
 }

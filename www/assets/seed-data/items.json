@@ -1,202 +1,200 @@
 [
-    {
-      "_id": 1,
-      "name": "Tournesol",
-      "sources": [
-        [
-          {
-            "source_id": 2,
-            "quantity_needed": 3
-          },
-          {
-            "source_id": 3,
-            "quantity_needed": 3
-          },
-          {
-            "source_id": 4,
-            "quantity_needed": 3
-          }
-        ]
-      ]
-    },
-    {
-      "_id": 2,
-      "name": "Gemsteel",
-      "sources": [
-        "Montblanc reward for 8 espers",
-        "90% monograph drop - lvl. 99 Red Chocobo, Ozmone Plain/Haulo Green",
-        [
-          {
-            "source_id": 5,
-            "quantity_needed": 1
-          },
-          {
-            "source_id": 6,
-            "quantity_needed": 2
-          },
-          {
-            "source_id": 7,
-            "quantity_needed": 2
-          }
-        ]
-      ]
-    },
-    {
-      "_id": 3,
-      "name": "Empyreal Soul",
-      "sources": [
-        "Montblanc reward at High Guardian clan rank",
-        "6% steal w/TC - lvl. 99 Red Chocobo, Ozmone Plain/Haulo Green",
-        [
-          {
-            "source_id": 8,
-            "quantity_needed": 2
-          },
-          {
-            "source_id": 9,
-            "quantity_needed": 1
-          },
-          {
-            "source_id": 10,
-            "quantity_needed":1
-          }
-        ]
-      ]
-    },
-    {
-      "_id": 4,
-      "name": "Serpentarius",
-      "sources": [
-        "Montblanc reward for 13 espers",
-        "80% steal w/TC - Zodiark",
-        [
-          {
-            "source_id": 11,
-            "quantity_needed": 4
-          },
-          {
-            "source_id": 12,
-            "quantity_needed": 2
-          },
-          {
-            "source_id": 10,
-            "quantity_needed": 1
-          }
-        ]
-      ]
-    },
-    {
-      "_id": 5,
-      "name": "Scarletite",
-      "sources": [
-        "80% steal w/TC - Aspidochelon (trophy rare), Cerobi Steppe/Feddik River (40% spawn)",
-        "6% mono drop - Emeralditan, Nabreus D/Echoes of the Past, The Slumbermead",
-        "50% chance to receive for perfect score in fishing game",
-        "6% steal w/TC - Pandaemonium, Pharos 1st Ascent/Dunes of Profaning Wind"
-      ]
-    },
-    {
-      "_id": 6,
-      "name": "Damascus Steel",
-      "sources": [
-        "Montblanc reward for 13 espers",
-        "80% steal w/TC - Anchag, Paramina R/Karydine G (Appears once per entry to Paramina Rift, must kill all else",
-        "80% steal w/TC - Bluesang (trophy rare), Cerobi Steppe/Crossfield",
-        "6% mono drop - Bune, Pharos second ascent, Penumbra north"
-      ]
-    },
-    {
-      "_id": 7,
-      "name": "Hell-Gate's Flame",
-      "sources": [
-        "5% mono drop or poach - Cerberus, Feywood/Walk of Stolen Truths",
-        "5% poach - Wary Wolf, Mosphoran H/Summit Path"
-      ]
-    },
-    {
-      "_id": 8,
-      "name": "Wargod's Band",
-      "sources": [
-        "5% mono drop - Leynir, Nabreus D/Lifeless Strand",
-        "6% steal w/TC - Victanir (trophy rare), Nam-Yensa S/Yellow Sands"
-      ]
-    },
-    {
-      "_id": 9,
-      "name": "Soul Powder",
-      "sources": [
-        "Reward for Ixtab hunt ('The Dead Ought Sleep Forever')",
-        "10% mono drop, 6% steal w/TC - Etem, Henne Mines/Special Charter Shaft",
-        "6% steal w/TC - Vorres (trophy rare), Necrohol/Hall of the Ivory Covenant (must provoke dark elemental)"
-      ]
-    },
-    {
-      "_id": 10,
-      "name": "High Arcana",
-      "sources": [
-        "Montblanc reward for 4 espers",
-        "Montblanc reward at Paragon of Justice clan rank",
-        "5% Canopic Jar drop - any respawnable rare game",
-        "6% steal w/TC - most espers",
-        [
-          {
-            "source_id": 13,
-            "quantity_needed": 10
-          },
-          {
-            "source_id": 14,
-            "quantity_needed": 1
-          },
-          {
-            "source_id": 15,
-            "quantity_needed": 1
-          }
-        ]
-      ]
-    },
-    {
-      "_id": 11,
-      "name": "Snake Skin",
-      "sources": [
-        "95% poach, 80% steal w/TC, 40-55% drop - Wildsnake, Giza P Dry/Toam Hills (only one at a time)",
-        "10% mono drop, 6% steal w/TC - Etem, Henne Mines/Special Charter Shaft",
-        "6% steal w/TC - Vorres (trophy rare), Necrohol/Hall of the Ivory Covenant (must provoke dark elemental)"
-      ]
-    },
-    {
-      "_id": 12,
-      "name": "Serpent Eye",
-      "sources": [
-        "Reward for Marilith hunt ('A Tingling Toast')",
-        "8% mono drop - Basilisk, Feywood/White ME, Ice FoC, Edge oR",
-        "5% poach - Grey Molter (rare), Mosphoran H/Empyrean Way"
-      ]
-    },
-    {
-      "_id": 13,
-      "name": "Arcana",
-      "sources": [
-        "Mono drop - most rare game",
-        "Canopic jar drop - all enemies"
-      ]
-    },
-    {
-      "_id": 14,
-      "name": "Feystone",
-      "sources": [
-        "Drop, steal - most elementals and entites",
-        "30% steal w/TC - crystalbugs, Stillshrine oM, Sochen CP, Nabreus D",
-        "30% steal w/TC - Elder wyrm(boss), Golmore J/Dell of the Dreamer",
-        "1-5% drop - Bangaa Thief, Cerobi Steppe/Old Elanise Road"
-      ]
-    },
-    {
-      "_id": 15,
-      "name": "Soul of Thamasa",
-      "sources": [
-        "Reward for Deathscythe hunt ('Dead City Watch')",
-        "6% mono drop - Oversoul, Necrohol oN/Ho Slumbering M, Hot Ivory C, Cot Highborn, Co Distant S, Ho Effulgent L",
-        "80% steal w/TC - Ishteen (rare), Barheim Passage/East-West B, The Zeviah S (spawn chance increases over time)"
-      ]
-    }
-  ]
+  {
+    "_id": 1,
+    "name": "Tournesol",
+    "bazaar_sources": [
+      {
+        "source_id": 2,
+        "quantity_needed": 3
+      },
+      {
+        "source_id": 3,
+        "quantity_needed": 3
+      },
+      {
+        "source_id": 4,
+        "quantity_needed": 3
+      }
+    ]
+  },
+  {
+    "_id": 2,
+    "name": "Gemsteel",
+    "basic_sources": [
+      {"primary_text": "Montblanc reward for 8 espers"},
+      {"primary_text": "90% monograph drop", "secondary_texts": ["lvl. 99 Red Chocobo", "Ozmone Plain/Haulo Green"]}
+    ],
+    "bazaar_sources": [
+      {
+        "source_id": 5,
+        "quantity_needed": 1
+      },
+      {
+        "source_id": 6,
+        "quantity_needed": 2
+      },
+      {
+        "source_id": 7,
+        "quantity_needed": 2
+      }
+    ]
+  },
+  {
+    "_id": 3,
+    "name": "Empyreal Soul",
+    "basic_sources": [
+      {"primary_text": "Montblanc reward", "secondary_texts": ["High Guardian clan rank"]},
+      {"primary_text": "6% steal w/TC", "secondary_texts": ["lvl. 99 Red Chocobo", "Ozmone Plain/Haulo Green"]}
+    ],
+    "bazaar_sources": [
+      {
+        "source_id": 8,
+        "quantity_needed": 2
+      },
+      {
+        "source_id": 9,
+        "quantity_needed": 1
+      },
+      {
+        "source_id": 10,
+        "quantity_needed": 1
+      }
+    ]
+  },
+  {
+    "_id": 4,
+    "name": "Serpentarius",
+    "basic_sources": [
+      {"primary_text": "Montblanc reward for 13 espers"},
+      {"primary_text": "80% steal w/TC", "secondary_texts": ["Zodiark"]}
+    ],
+    "bazaar_sources": [
+      {
+        "source_id": 11,
+        "quantity_needed": 4
+      },
+      {
+        "source_id": 12,
+        "quantity_needed": 2
+      },
+      {
+        "source_id": 10,
+        "quantity_needed": 1
+      }
+    ]
+  },
+  {
+    "_id": 5,
+    "name": "Scarletite",
+    "basic_sources": [
+      {"primary_text": "80% steal w/TC", "secondary_texts": ["Aspidochelon (trophy rare)", "Cerobi Steppe/Feddik River (40% spawn)"]},
+      {"primary_text": "6% mono drop", "secondary_texts": ["Emeralditan", "Nabreus D/Echoes of the Past, The Slumbermead"]},
+      {"primary_text": "50% chance to receive", "secondary_texts": ["perfect score in fishing game"]},
+      {"primary_text": "6% steal w/TC", "secondary_texts": ["Pandaemonium", "Pharos 1st Ascent/Dunes of Profaning Wind"]}
+    ]
+  },
+  {
+    "_id": 6,
+    "name": "Damascus Steel",
+    "basic_sources": [
+      {"primary_text": "80% steal w/TC", "secondary_texts": ["Anchag", "Paramina R/Karydine G", "Appears 1x/entry to Paramina R, must kill all else"]},
+      {"primary_text": "80% steal w/TC", "secondary_texts": ["Bluesang (trophy rare)", "Cerobi Steppe/Crossfield"]},
+      {"primary_text": "6% mono drop/5% poach", "secondary_texts": ["Bune", "Pharos second ascent", "Penumbra north"]},
+      {"primary_text": "6% steal w/TC", "secondary_texts": ["Daedalus(boss)", "Giruvegan/Gate of Water"]}
+    ]
+  },
+  {
+    "_id": 7,
+    "name": "Hell-Gate's Flame",
+    "basic_sources": [
+      {"primary_text": "5% mono drop/poach", "secondary_texts": ["Cerberus", "Feywood/Walk of Stolen Truths"]},
+      {"primary_text": "5% poach", "secondary_texts": ["Wary Wolf", "Mosphoran H/Summit Path"]}
+    ]
+  },
+  {
+    "_id": 8,
+    "name": "Wargod's Band",
+    "basic_sources": [
+      {"primary_text": "5% mono drop", "secondary_texts": ["Leynir", "Nabreus D/Lifeless Strand"]},
+      {"primary_text": "6% steal w/TC", "secondary_texts": ["Victanir (trophy rare)", "Nam-Yensa S/Yellow Sands"]}
+    ]
+  },
+  {
+    "_id": 9,
+    "name": "Soul Powder",
+    "basic_sources": [
+      {"primary_text": "Ixtab hunt reward", "secondary_texts": ["'The Dead Ought Sleep Forever'"]},
+      {"primary_text": "10% mono drop/6% steal w/TC", "secondary_texts": ["Etem", "Henne Mines/Special Charter Shaft"]},
+      {"primary_text": "6% steal w/TC", "secondary_texts": ["Vorres (trophy rare)", "Necrohol/Hall of the Ivory Covenant", "Must provoke dark elemental"]}
+    ]
+  },
+  {
+    "_id": 10,
+    "name": "High Arcana",
+    "basic_sources": [
+      {"primary_text": "Montblanc reward for 4 espers"},
+      {"primary_text": "Montblanc reward", "secondary_texts": ["Paragon of Justice clan rank"]},
+      {"primary_text": "5% Canopic Jar drop", "secondary_texts": ["Any respawnable rare game"]},
+      {"primary_text": "6% steal w/TC", "secondary_texts": ["Most espers"]}
+    ],
+    "bazaar_sources": [
+      {
+        "source_id": 13,
+        "quantity_needed": 10
+      },
+      {
+        "source_id": 14,
+        "quantity_needed": 1
+      },
+      {
+        "source_id": 15,
+        "quantity_needed": 1
+      }
+    ]
+  },
+  {
+    "_id": 11,
+    "name": "Snake Skin",
+    "basic_sources": [
+      {"primary_text": "95% poach/80% steal w/TC", "secondary_texts": ["also 40-55% drop", "Wildsnake", "Giza P Dry/Toam Hills", "only one at a time"]},
+      {"primary_text": "40-55% drop", "secondary_texts": ["Grey Molter (rare)", "Mosphoran H/Empyrean W", "Appears when clock displays 10-20 mins"]},
+      {"primary_text": "40-55% drop", "secondary_texts": ["Midgardsormr (rare)", "Golmore J/P of Chained L", "20% to spawn"]}
+    ]
+  },
+  {
+    "_id": 12,
+    "name": "Serpent Eye",
+    "basic_sources": [
+      {"primary_text": "Marilith hunt reward", "secondary_texts": ["'A Tingling Toast'"]},
+      {"primary_text": "8% mono drop", "secondary_texts": ["Basilisk", "Feywood/White ME, Ice FoC, Edge oR"]},
+      {"primary_text": "5% poach", "secondary_texts": ["Grey Molter (rare)", "Mosphoran H/Empyrean Way"]}
+    ]
+  },
+  {
+    "_id": 13,
+    "name": "Arcana",
+    "basic_sources": [
+      {"primary_text": "Mono drop", "secondary_texts": ["most rare game"]},
+      {"primary_text": "Canopic jar drop", "secondary_texts": ["all enemies"]}
+    ]
+  },
+  {
+    "_id": 14,
+    "name": "Feystone",
+    "basic_sources": [
+      {"primary_text": "Drop, steal", "secondary_texts": ["most elementals and entites"]},
+      {"primary_text": "30% steal w/TC", "secondary_texts": ["crystalbugs", "Stillshrine oM, Sochen CP, Nabreus D"]},
+      {"primary_text": "30% steal w/TC", "secondary_texts": ["Elder wyrm(boss)", "Golmore J/Dell of the Dreamer"]},
+      {"primary_text": "1-5% drop", "secondary_texts": ["Bangaa Thief", "Cerobi Steppe/Old Elanise Road"]}
+    ]
+  },
+  {
+    "_id": 15,
+    "name": "Soul of Thamasa",
+    "basic_sources": [
+      {"primary_text": "Deathscythe hunt reward", "secondary_texts": ["'Dead City Watch'"]},
+      {"primary_text": "6% mono drop", "secondary_texts": ["Oversoul", "Necrohol/Ho Slumbering M, Hot Ivory C", "also Cot Highborn, Co Distant S, Ho Effulgent L"]},
+      {"primary_text": "80% steal w/TC", "secondary_texts": ["Ishteen (rare)", "Barheim Passage/East-West B, The Zeviah S", "spawn chance increases over time"]}
+    ]
+  }
+]

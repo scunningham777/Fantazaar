@@ -6,7 +6,13 @@ const ITEMS_URL = 'assets/seed-data/items.json';
 export interface Item {
     _id: number,
     name: string,
-    sources: any[];
+    basic_sources: BasicItemSource[],
+    bazaar_sources: {source_id: number, quantity_needed: number}[]
+}
+
+export interface BasicItemSource {
+    primary_text: string,
+    secondary_texts: string[]
 }
 
 @Injectable()
@@ -29,11 +35,10 @@ export class ItemsService {
         return this._getItemByProperty('name', requestedName);
     }
     
-    getItemSourceList(requestedItem: Item): Promise<Array<{source_id: number, source_name: string, quantity_needed:number}>> {
+    getItemSourceList(requestedItem: Item): Promise<{source_id: number, source_name: string, quantity_needed:number}[]> {
         let sourceListPromise = new Promise((resolve, reject) => {
             this._getItems().then((items: Item[]) => {
-                let sourceList = requestedItem.sources
-                    .filter(Array.isArray)[0]
+                let sourceList = requestedItem.bazaar_sources
                     .map(source => {
                         let getItemByIdSync = () => items.find(item => item._id == source.source_id); 
                         
