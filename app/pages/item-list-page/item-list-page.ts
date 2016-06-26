@@ -35,6 +35,10 @@ export class ItemListPage {
   editItemOwnedCount(item: ItemWithCounts) {
     let editItemOwnedCountModal = Modal.create(EditItemOwnedModalPage, {item: item});
     editItemOwnedCountModal.onDismiss(data => {
+      if (!data) {
+        //user cancelled the dialog
+        return;
+      }
       item.numberOwned = data.newCount;
       this._inventoryService.setItemOwnedCount(data.itemName, data.newCount);
     })
@@ -44,6 +48,10 @@ export class ItemListPage {
   editItemSoldCount(item: ItemWithCounts) {
     let editItemSoldCountModal = Modal.create(EditItemSoldModalPage, {item: item});
     editItemSoldCountModal.onDismiss(data => {
+      if (!data) {
+        //user cancelled the dialog
+        return;
+      }
       item.numberSold = data.newCount;
       this._inventoryService.setItemSoldCount(data.itemName, data.newCount);
     })

@@ -5,12 +5,12 @@
 <ion-content class="layout-primary">
   <div class="layout-restrainWidth800">
     <div *ngFor="let item of fullItems; let index=index" class="itemTile itemTile-bg{{index%7}}">
-      <div class="itemTile_content" (click)="showItemDetails(item)">{{item.name}}</div>
+      <div class="itemTile_content" (tap)="showItemDetails(item)">{{item.name}}</div>
       <div class="itemTile_buttonRow">
-        <div class="itemTile_button" (click)="incrementItemOwnedCount(item)" (press)="editItemOwnedCount(item)">
+        <div class="itemTile_button" (tap)="incrementItemOwnedCount(item)" (press)="editItemOwnedCount(item)">
           <span class="itemTile_countText">{{item.numberOwned}}</span> owned
         </div>
-        <div class="itemTile_button" (click)="transferCountFromOwnedToSold(item, 1)" (press)="editItemSoldCount(item)">
+        <div class="itemTile_button" (tap)="transferCountFromOwnedToSold(item, 1)" (press)="editItemSoldCount(item)">
           <span class="itemTile_countText">{{item.numberSold}}</span> sold
         </div>
       </div>

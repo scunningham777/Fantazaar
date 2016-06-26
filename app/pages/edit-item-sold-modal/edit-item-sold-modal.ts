@@ -20,11 +20,15 @@ export class EditItemSoldModalPage {
     this.itemSoldCount = item.numberSold;
   }
   
-  submit() {
+  private _close(data: any) {
+    this._viewCtrl.dismiss(data);
+  }
+
+  private _submit() {
     let data = {
       itemName: this.itemName,
       newCount: +(this.itemSoldCount)
     }
-    this._viewCtrl.dismiss(data);
+    this._close(data);
   }
 }

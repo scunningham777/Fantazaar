@@ -27,11 +27,20 @@
 
 $colors: (
 //  fz-primary-dark:      #384450,
-  fz-primary-dark:      #333640,
-  fz-primary-light:     #7BB2C2,
+  fz-primary-dark: (
+    base:               #333640,
+    contrast:           #7BB2C2
+  ),
+  fz-primary-light: (
+    base:               #7BB2C2,
+    contrast:           #333640
+  ), 
   fz-coral:             #F2695C,
   fz-yellow:            #F0CA4D,
-  fz-seafoam:           #79CFB3,
+  fz-seafoam: (
+    base:               #79CFB3,
+    contrast:           #333640
+  ), 
   primary:    #387ef5,
   secondary:  #32db64,
   danger:     #f53d3d,
@@ -64,6 +73,6 @@ $list-wp-border-color: color($colors, fz-primary-light);
 $label-md-text-color: color($colors, fz-primary-light);
 $label-ios-text-color: color($colors, fz-primary-light);
 $label-wp-text-color: color($colors, fz-primary-light);
-$list-md-text-color: color($colors, fz-yellow);
-$list-ios-text-color: color($colors, fz-yellow);
-$list-wp-text-color: color($colors, fz-yellow);
+// $list-md-text-color: color($colors, fz-yellow);
+// $list-ios-text-color: color($colors, fz-yellow);
+// $list-wp-text-color: color($colors, fz-yellow);

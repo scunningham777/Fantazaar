@@ -18,12 +18,16 @@ export class EditItemOwnedModalPage {
     this.itemName = item.name;
     this.itemOwnedCount = item.numberOwned;
   }
+
+  private _close(data: any) {
+    this._viewCtrl.dismiss(data);
+  }
   
-  submit() {
+  private _submit() {
     let data = {
       itemName: this.itemName,
       newCount: +(this.itemOwnedCount)
     }
-    this._viewCtrl.dismiss(data);
+    this._close(data);
   }
 }

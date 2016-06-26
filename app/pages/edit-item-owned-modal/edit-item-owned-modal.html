@@ -1,5 +1,10 @@
 <ion-navbar *navbar>
   <ion-title>{{itemName}}</ion-title>
+  <ion-buttons end>
+    <button (click)="_close()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-buttons>
 </ion-navbar>
 
 <ion-content class="layout-primary">
@@ -9,11 +14,11 @@
       <br/><br/>
       <ion-list>
         <ion-item>
-          <ion-label floating>Number Owned</ion-label>
-          <ion-input type="number" [(ngModel)]="itemOwnedCount"></ion-input>
+          <ion-label fz-seafoam>Number Owned</ion-label>
+          <ion-input type="number" class="fzEditItemCountDialog_inputText" text-right [(ngModel)]="itemOwnedCount"></ion-input>
         </ion-item>
       </ion-list>
-      <button block fz-primary-light (click)="submit()">Submit</button>
+      <button block fz-seafoam (click)="_submit()">Submit</button>
     </div>
   </div>
 </ion-content>
