@@ -15,7 +15,7 @@
       <ion-list>
         <ion-item>
           <ion-label fz-seafoam>Number Owned</ion-label>
-          <ion-input type="number" class="fzEditItemCountDialog_inputText" text-right [(ngModel)]="itemOwnedCount"></ion-input>
+          <ion-input type="number" class="fzEditItemCountDialog_inputText" text-right [(ngModel)]="itemOwnedCount" min="0" max="99"></ion-input>
         </ion-item>
       </ion-list>
       <button block fz-seafoam (click)="_submit()">Submit</button>
