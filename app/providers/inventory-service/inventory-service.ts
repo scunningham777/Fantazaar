@@ -19,14 +19,15 @@ export class InventoryService {
     let clearedPromise = new Promise((resolve, reject) => {
       this._persistInventoryUpdates("")
         .then(result => {
+          this._inventory = null;
           resolve(true);
         });
     })
     return clearedPromise;
   }
   
-  getInventory(): Promise<InventoryEntry[]> {
-    if (!this._inventory) {
+  getInventory(ignoreCache?: boolean): Promise<InventoryEntry[]> {
+    if (ignoreCache || !this._inventory) {
       this._inventory = new Promise((resolve, reject) => {
         this._entityManager.getTable(INVENTORY_TABLE_NAME)
           .then((inventory: any) => {

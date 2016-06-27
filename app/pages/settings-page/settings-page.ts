@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Toast} from 'ionic-angular';
+import {NavController, Toast, Events} from 'ionic-angular';
 import {InventoryService} from '../../providers/inventory-service/inventory-service'
 
 @Component({
@@ -8,7 +8,8 @@ import {InventoryService} from '../../providers/inventory-service/inventory-serv
 export class SettingsPage {
   constructor(
     private _nav: NavController,
-    private _inventoryService: InventoryService
+    private _inventoryService: InventoryService,
+    private _events: Events
   ){
   }
   
@@ -22,6 +23,7 @@ export class SettingsPage {
             duration: 1000
           });
           this._nav.present(successToast);
+          this._events.publish('fzInventoryUpdated', null);
         })  
         .catch((reason) => {
           let failToast = Toast.create({

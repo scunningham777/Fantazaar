@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Modal} from 'ionic-angular';
+import {Modal, Events} from 'ionic-angular';
 import {NavController} from 'ionic-angular';
 import {ValuesPipe} from '../../utils/values.pipe';
 import {ItemDetailsPage} from '../item-details-page/item-details-page';
@@ -20,12 +20,15 @@ export class ItemListPage {
   constructor(
     private _nav: NavController, 
     private _itemsService: ItemsService, 
-    private _inventoryService: InventoryService
+    private _inventoryService: InventoryService,
+    private _events: Events
   ) {}
 
   ngOnInit() {
     this._initFullItems();
-    
+    this._events.subscribe('fzInventoryUpdated', () => {
+      this._initFullItems(true);
+    })
   }
 
   showItemDetails(item: Item) {
@@ -74,9 +77,9 @@ export class ItemListPage {
     this._inventoryService.setItemSoldCount(item.name, item.numberSold);    
   }
   
-  _initFullItems(): void {
+  _initFullItems(ignoreCache?: boolean): void {
     this.items = this._itemsService.getAllItems();
-    this.inventory = this._inventoryService.getInventory();
+    this.inventory = this._inventoryService.getInventory(ignoreCache);
     let promiseArray: [Promise<Item[]>, Promise<InventoryEntry[]>] = [this.items, this.inventory];
     Promise.all(promiseArray)
       .then((results: any[]) => {
